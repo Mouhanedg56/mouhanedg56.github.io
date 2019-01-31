@@ -33,6 +33,10 @@ Une voiture autonome (parfois appelée voiture auto-pilotée ou voiture sans con
 
 **Niveaux d'autonomie dans les voitures**. La National Highway Traffic Safety Administration (NHTSA) aux États-Unis établit six niveaux d'automatisation, en commençant par zéro, où l'homme conduit, en passant par les technologies d'assistance à la conduite jusqu'aux voitures entièrement autonomes. Voici les cinq niveaux qui suivent l'automatisation zéro :
 
+<div class="fig figcenter fighighlight">
+  <img src="/imgs/automation.png">
+</div>
+
 - **Niveau 1**. Le système d'aide à la conduite avancé (ADAS) aide le conducteur humain à diriger, à freiner ou à accélérer, mais pas simultanément. Le système ADAS comprend des caméras de recul et des dispositifs tels qu'un siège vibrant pour avertir les conducteurs lorsqu'ils sortent de la voie de circulation.
 - **Niveau 2**. Un ADAS qui peut diriger et freiner ou accélérer simultanément où le conducteur doit faire attention au volant et continue à agir en tant que conducteur.
 - **Niveau 3**. Un système de conduite automatisé (ADS) peut effectuer toutes les tâches de conduite dans certaines circonstances, comme le stationnement de la voiture. Dans ces circonstances, le conducteur humain doit être prêt à reprendre le contrôle et doit toujours être le conducteur principal du véhicule.
