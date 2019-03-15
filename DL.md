@@ -166,4 +166,4 @@ Le serveur sera le simulateur et le client sera le réseau neuronal, ou plutôt 
 **Résultats**
 
 Voici une vidéo de la façon dont le réseau neuronal formé conduit la voiture :
-[![IMAGE ALT TEXT HERE](/imgs/app.jpg =250x)](https://www.youtube.com/watch?v=eHJ6yHTEdBM)
+[![IMAGE ALT TEXT HERE](/imgs/app.jpg)](https://www.youtube.com/watch?v=eHJ6yHTEdBM){:height="36px" width="36px"}
