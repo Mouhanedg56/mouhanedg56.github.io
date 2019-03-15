@@ -4,6 +4,8 @@ mathjax: true
 permalink: /veille/
 ---
 
+## Les outiles de la veille
+
 - **Twitter**
 <div class="fig figcenter fighighlight">
   <img src="/imgs/twiter.png">
