@@ -1,11 +1,13 @@
 ---
 layout: page
 mathjax: true
-permalink: /integration/
+permalink: /DL/
 ---
 
-- [les différentes enjeux techniques](#ia)
-- [Les approches envisageables](#voitures)
+- [Introduction au Deep Learning](#ia)
+- [Comment les algorithmes de Deep Learning "apprennent-ils" ?](#voitures)
+- [Convolutional Neural Network (CNN)](#cnn)
+- [Conduite autonome utilisant l'apprentissage profond et le clonage comportemental](#application)
 
 <a name='ia'></a>
 
@@ -55,6 +57,7 @@ Le but ultime de mon réseau est de minimiser cette perte en ajustant les poids 
 
 Sans entrer dans la preuve, les mises à jour continues des poids et des biais du réseau en font en fin de compte un approximateur de fonction précis, qui modélise la relation entre les entrées et les sorties attendues.
 
+<a name='cnn'></a>
 ## Convolutional Neural Network (CNN)
 
 Les réseaux neuronaux convolutionnels (ConvNets ou CNNs) sont l'une des principales catégories de réseaux de neuronaux. Cette catégorie sert pour faire la reconnaissance d'images, la classification des images. La détection d'objets, les visages de reconnaissance, etc. sont quelques-uns des domaines où les CNN sont largement utilisés.
@@ -79,21 +82,29 @@ La convolution est le premier couche qui extrait les caractéristiques d'une ima
 </div>
 
 Considérons une image 5 x 5 dont les valeurs de pixels sont 0, 1 et la matrice de filtrage 3 x 3 comme indiqué ci-dessous:
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/filtre.png">
 </div>
 
 Alors la convolution de la matrice d'image 5 x 5 se multiplie avec la matrice de filtre 3 x 3 qui s'appelle "Feature Map". La sortie est montrée ci-dessous:
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/output.gif">
 </div>
+
 La convolution d'une image avec différents filtres permet d'effectuer des opérations telles que la détection des contours, rendre une image plus floue ou plus nette en appliquant des filtres. L'exemple ci-dessous montre différentes images de convolution après application de différents types de filtres (noyaux).
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/application.png">
 </div>
 
+<a name='application'></a>
+
 ## Conduite autonome utilisant l'apprentissage profond et le clonage comportemental
+
 **Génération de données pour le système autonome**
+
 Cette partie est inspirée du processus de collecte de données de Nvidia Self-Driving Car. Ils ont attaché 3 caméras à une voiture. L'un est placé au centre et les 2 autres sont placés de chaque côté de la voiture. Ils ont enregistré les données du volant, capturant l'angle de braquage.
 
 Le volant est fixé au système via le Controller Area Network (CAN) pour alimenter la valeur du volant, de l'accélérateur, du frein. Les caméras sont également connectées au système où elles sont alimentées en flux continu de données vidéo. Le système s'appelle Nvidia Drive PX - Nvidia Drive est une plate-forme AI qui permet aux utilisateurs de construire et de déployer des voitures, des camions et des navettes à conduite automatique. Il combine l'apprentissage en profondeur, les capteurs de fusion pour changer l'expérience de conduite. Un Solid State Drive est utilisé pour stocker toutes les données collectées. Udacity ont developpé un simulateur d'auto-conduite qui fait la même chose.
@@ -101,31 +112,41 @@ Le volant est fixé au système via le Controller Area Network (CAN) pour alimen
 Vous trouverez le simulateur <a href="https://github.com/udacity/self-driving-car-sim">ici</a>. C'est un fichier binaire ! Vous n'avez pas à vous soucier de le compiler. Il suffit de double-cliquer dessus et le simulateur démarre ! C'est trop cool !
 
 Le simulateur a 2 modes - Mode d'apprentissage et mode Autonome :
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/modes.png">
 </div>
+
 Le mode d'entraînement ressemble à ceci :
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/training_mode.png">
 </div>
+
 En mode d'entraînement, le simulateur capture les images des 3 caméras, la valeur de vitesse, la valeur d'accélération, la valeur de freinage et l'angle de braquage. Vous devez cliquer sur l'icône d'enregistrement en haut à droite de l'écran pour démarrer l'enregistrement.
 
 Le mode autonome ressemble à ceci :
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/auto.png">
 </div>
+
 Dans ce mode, le simulateur agit comme un serveur et le script python agit comme un client. Vous comprendrez ce que je veux dire en lisant ce qui suit.
 
 **Entraînement du système autonome**
+
 Les données collectées au cours de la partie Génération de données impliquaient la collecte de toutes les images de la caméra, de l'angle de braquage et autres pendant qu'un conducteur humain conduisait la voiture. Nous pouvons créer un modèle qui clone la façon dont l'être humain conduisait la voiture, qui clone essentiellement le comportement du conducteur dans différents scénarios routiers. C'est ce qu'on appelle le clonage comportemental. Le clonage comportemental est une méthode qui permet de saisir et de reproduire les habiletés sous-cognitives humaines dans un programme d'ordinateur.
+
 
 Vous trouverez ci-dessous une représentation graphique du fonctionnement de l'entraînement :
 <div class="fig figcenter fighighlight">
   <img src="/imgs/train.png">
 </div>
+
 Les images capturées par les 3 caméras sont décalées au hasard et pivotées, puis envoyées au réseau neuronal. Sur la base de ces données, le réseau neuronal émettrait une valeur unique, l'angle de braquage. Essentiellement, en se basant sur les images d'entrée, le neurone neural décide de l'angle sous lequel la voiture doit être dirigée. Cette valeur de sortie est comparée aux données de pilotage recueillies lors de la conduite humaine pour calculer l'erreur dans la décision du réseau neuronal. Avec cette erreur, le modèle utilise l'algorithme Backpropogation pour optimiser le paramètre (poids) du modèle afin de réduire cette erreur.
 
 L'architecture CNN(Convolutional Neural Network) la plus utilisée celle de Nvidia. Voici à quoi ressemble le réseau :
+
 <div class="fig figcenter fighighlight">
   <img src="/imgs/arch.png">
 </div>
@@ -143,6 +164,7 @@ Le test se fait en utilisant uniquement les images de la caméra centrale. L'ent
 Le serveur sera le simulateur et le client sera le réseau neuronal, ou plutôt le programme Python. Tout ce processus est une boucle de rétroaction cyclique. Le simulateur affiche les images, le programme python les analyse et affiche l'angle de braquage et l'accélération. Le simulateur le reçoit et fait tourner la voiture en conséquence. Et tout le processus se déroule de manière cyclique.
 
 **Résultats**
+
 Voici une vidéo de la façon dont le réseau neuronal formé conduit la voiture :
 <iframe src="https://www.youtube.com/watch?v=yy3aECjsBuk"
    width="560" height="315" frameborder="0" allowfullscreen></iframe>

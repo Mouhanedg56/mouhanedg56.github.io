@@ -1,13 +1,8 @@
 ---
 layout: page
 mathjax: true
-permalink: /integration/
+permalink: /veille/
 ---
-
-- [les différentes enjeux techniques](#ia)
-- [Les approches envisageables](#voitures)
-
-<a name='ia'></a>
 
 ## Les outiles de la veille
 
